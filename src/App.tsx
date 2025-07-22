@@ -1,25 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import { Input } from 'antd';
+import "antd/dist/antd.css";
 import './App.css';
+import { FormProvider } from './contexts/FormContext';
+import { useEffect, useState } from 'react';
+import { CoolInput } from './components/CoolInput';
+import { CoolButton } from './components/CoolButton';
 
 function App() {
+  const [stuff, setStuff] = useState('');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FormProvider defaultValues={stuff ? { stuff } : undefined}>
+      <div className="App">
+        <CoolButton />
+        <CoolInput />
+      </div>
+    </FormProvider>
   );
 }
 
