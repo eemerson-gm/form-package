@@ -7,13 +7,23 @@ import { CoolInput } from './components/CoolInput';
 import { CoolButton } from './components/CoolButton';
 
 function App() {
-  const [stuff, setStuff] = useState('');
+  const [stuff, setStuff] = useState<Record<string, any> | undefined>();
+  const [showInput, setShowInput] = useState(true);
+
+  console.log('app rerendering')
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setStuff({ test: 'tacos' });
+  //   }, 4000);
+  // }, []);
 
   return (
-    <FormProvider defaultValues={stuff ? { stuff } : undefined}>
+    <FormProvider defaultValues={stuff}>
       <div className="App">
         <CoolButton />
-        <CoolInput />
+        <button onClick={() => setShowInput(!showInput)}>Toggle Input</button>
+        {showInput ? (<CoolInput />) : null}
       </div>
     </FormProvider>
   );

@@ -1,21 +1,10 @@
-import { Input, InputRef } from "antd"
-import { useForm } from "../contexts/FormContext"
-import { useEffect, useRef } from "react";
+import { Input } from "antd"
+import { Controller } from "../contexts/Controller";
 
 export const CoolInput = () => {
-  const { formState, register, errors, getValue, setValue } = useForm();
-
-  useEffect(() => {
-    setTimeout(() => {
-      setValue('myname', 'tacos2');
-    }, 4000);
-  }, []);
-
   return (
-    <Input
-      {...register('myname')}
-      type="text"
-      placeholder="Text..."
-    />
+    <>
+      <Controller name="test" defaultValue="default" render={({ field }) => <Input {...field} />} />
+    </>
   )
 }
